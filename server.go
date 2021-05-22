@@ -11,8 +11,10 @@ import (
 
 func main() {
 
+	// Connect to the database
 	db := database.ConnectDB()
 
+	// Automatically generate schema and table
 	if err := db.AutoMigrate(data.Game{}); err != nil {
 		log.Fatal("Could not migrate:", err)
 	}
@@ -21,10 +23,9 @@ func main() {
 	app := fiber.New()
 
 	// Setup routes (check ./routes for setup function)
-
 	routes.SetupRoutes(app)
 
 	// Serving on localhost:8080/
-
 	log.Fatal(app.Listen(":8080"))
+
 }

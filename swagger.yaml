@@ -1,0 +1,52 @@
+basePath: /
+consumes:
+- application/json
+definitions:
+  Game:
+    description: Game Model
+    properties:
+      id:
+        format: int64
+        type: integer
+        x-go-name: ID
+      name:
+        type: string
+        x-go-name: Name
+      publisher:
+        type: string
+        x-go-name: Publisher
+      rating:
+        format: int64
+        type: integer
+        x-go-name: Rating
+      sales:
+        format: int64
+        type: integer
+        x-go-name: Sales
+    type: object
+    x-go-package: github.com/siddhanthpx/rest-api/data
+info:
+  title: Games API.
+  version: 1.0.0
+paths:
+  /games:
+    get:
+      description: Returns a list of games
+      operationId: listGames
+      responses:
+        "200":
+          $ref: '#/responses/gamesResponse'
+      tags:
+      - games
+produces:
+- application/json
+responses:
+  gamesResponse:
+    description: A list of games returned in the response
+    schema:
+      items:
+        $ref: '#/definitions/Game'
+      type: array
+schemes:
+- http
+swagger: "2.0"
