@@ -10,6 +10,7 @@ require (
 	github.com/go-openapi/swag v0.19.15 // indirect
 	github.com/go-playground/universal-translator v0.17.0 // indirect
 	github.com/go-playground/validator v9.31.0+incompatible // indirect
+	github.com/go-redis/redis/v8 v8.8.3 // indirect
 	github.com/gofiber/adaptor/v2 v2.1.3 // indirect
 	github.com/gofiber/fiber/v2 v2.10.0 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
@@ -18,6 +19,7 @@ require (
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-sqlite3 v1.14.7 // indirect
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
+	github.com/patrickmn/go-cache v2.1.0+incompatible // indirect
 	github.com/valyala/fasthttp v1.25.0 // indirect
 	go.mongodb.org/mongo-driver v1.5.2 // indirect
 	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a // indirect
