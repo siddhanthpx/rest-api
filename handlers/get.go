@@ -1,8 +1,11 @@
 package handlers
 
 import (
+	"context"
+	"log"
 	"rest-api/data"
 	"rest-api/database"
+	"rest-api/rediscache"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -47,6 +50,16 @@ func GetGame(ctx *fiber.Ctx) error {
 
 	// Connect to the database
 	db := database.ConnectDB()
+	redis, err := rediscache.NewClient()
+	if err != nil {
+		log.Fatalf("Could not initialize Redis client %s", err)
+	}
+
+	val, err := redis.GetGame(context.TODO(), id)
+	if err == nil {
+		ctx.JSON(&val)
+		return nil
+	}
 
 	// Find the game with the given ID and encode into an empty game instance
 	var fetchedGame data.Game
@@ -56,6 +69,10 @@ func GetGame(ctx *fiber.Ctx) error {
 
 	// Send the JSON to the handler
 	if err = ctx.JSON(fetchedGame); err != nil {
+		return err
+	}
+
+	if err := redis.SetGame(context.Background(), fetchedGame); err != nil {
 		return err
 	}
 
